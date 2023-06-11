@@ -103,7 +103,7 @@ AUTOR
     </header>
     <div>
         <p class="desc">
-            Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad za maturski ispit iz web programiranja na temu FotoGalerija.
+            Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu FotoGalerija.
         </p>
     </div>
 </body>
