@@ -1,0 +1,483 @@
+POCETNA
+===================================================================================================================================================
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Инструменти</title>
+</head>
+<body>
+    <header>
+        <h1>ОСНОВНА ШКОЛА "СОЊА МАРИНКОВИЋ"</h1>
+        <nav class="navbar">
+            <div class="polje trenutno" id="pocetna">
+                <p>Почетна</p>
+            </div>
+            <div class="polje" id="autordugme">
+                <p>О аутору</p>
+            </div>
+            <div class="polje" id="uputstvodugme">
+                <p>Упутство</p>
+            </div>
+        </nav>
+		<h3>Звуци инструмената</h3>
+    </header>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<br><br><br><br><br><br><br><br><br><br>
+	<div class="sadrzaj">
+
+	 
+	
+		<div class="srbija" id="srbija">
+			
+			<div class="naslov">
+			<p> Култура </p>
+        <p> Музичка </p>
+		
+		<br><br>
+    </div>
+			
+			<table>
+  <tr>
+    <th>Назив инструмента</th>
+    <th>Слика инструмента</th>
+    <th>Звук инструмента</th>
+  </tr>
+  <tr>
+    <td>Гитара</td>
+    <td><a href="https://sr.wikipedia.org/sr-ec/%D0%93%D0%B8%D1%82%D0%B0%D1%80%D0%B0"><img src="./slike/gitara.png" width="100" height="100"></a></td>
+    <td><div id="z1"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori1()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+  <tr>
+    <td>Виолина</td>
+    <td><a href="https://sr.wikipedia.org/sr-ec/%D0%92%D0%B8%D0%BE%D0%BB%D0%B8%D0%BD%D0%B0"><img src="./slike/violina.png" width="60" height="100"></a></td>
+    <td><div id="z2"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori2()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+  <tr>
+    <td>Клавир</td>
+    <td><a href="https://sr.wikipedia.org/sr-ec/%D0%9A%D0%BB%D0%B0%D0%B2%D0%B8%D1%80"><img src="./slike/klavir.png" width="100" height="100"></a></td>
+    <td><div id="z3"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori3()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+  <tr>
+    <td>Бубњеви</td>
+    <td><a href="https://sr.wikipedia.org/sr-ec/%D0%91%D1%83%D0%B1%D1%9A%D0%B5%D0%B2%D0%B8"><img src="./slike/bubnjevi.png" width="100" height="100"></a></td>
+    <td><div id="z4"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori4()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+  <tr>
+    <td>Хармоника</td>
+    <td><a href="https://sr.wikipedia.org/sr-ec/%D0%A5%D0%B0%D1%80%D0%BC%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0"><img src="./slike/harmonika.png" width="100" height="100"></a></td>
+    <td><div id="z5"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori5()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+  <tr>
+    <td>Контра фагот</td>
+    <td><a href="https://sr.wikipedia.org/sr/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%B0%D1%84%D0%B0%D0%B3%D0%BE%D1%82"><img src="./slike/kontaFagot.png" width="100" height="100"></a></td>
+    <td><div id="z6"><img src="./slike/zvuk.png" width="100" height="100"></div><div onclick="otvori6()"; style="cursor:pointer"><u>Сазнајте више</u></div></td>
+  </tr>
+</table>
+			
+		</div>	
+			
+	
+    </div>
+
+
+		
+		
+			
+		<div class="autor skriveno" id="autor">
+	
+		   <div class="sadrzajpolje">
+                <div class="omeni">
+					<br><br>
+                    <h1>Mateja Nesic</h1>
+                    <p>Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu Zvuci instrumenata.</p>
+                </div>
+            </div>
+		</div>
+
+        <div class="uputstvo skriveno" id="uputstvo">
+            <div class="sadrzajpolje">
+				<br>
+                <p>
+                   На насловној страни имамо инструменте,када кликнемо на инструмент идемо на Wikipediu ,а када пређемо преко звучника чује се звук.
+
+
+                </p>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+	
+	
+	<br><br><br>
+	
+	<footer>
+        <p>Copyright &#169 Oсновна школа "Соња Маринковић"</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+============================================================================================================================================================================================
+SKRIPTA
+============================================================================================================================================================================================
+let z1 = new Audio("./audio/gitara.wav")
+let z2 = new Audio("./audio/violina.wav")
+let z3 = new Audio("./audio/klavir.mp3")
+let z4 = new Audio("./audio/bubnjevi.wav")
+let z5 = new Audio("./audio/harmonika.mp3")
+let z6 = new Audio("./audio/kontraFagot.mp3")
+
+
+document.getElementById('z1').addEventListener("mouseover", ()=>{
+    z1.play();
+})
+document.getElementById('z2').addEventListener("mouseover", ()=>{
+    z2.play();
+})
+document.getElementById('z3').addEventListener("mouseover", ()=>{
+    z3.play();
+})
+document.getElementById('z4').addEventListener("mouseover", ()=>{
+    z4.play();
+})
+document.getElementById('z5').addEventListener("mouseover", ()=>{
+    z5.play();
+})
+document.getElementById('z6').addEventListener("mouseover", ()=>{
+    z6.play();
+})
+
+
+let stranica = "srbija";
+let dugme = "pocetna";
+
+
+document.getElementById('pocetna').addEventListener("click", ()=>{
+    document.getElementById(stranica).classList.add("skriveno")
+    stranica = "srbija";
+    document.getElementById('srbija').classList.remove("skriveno");
+
+    document.getElementById(dugme).classList.remove("trenutno");
+    dugme = "pocetna";
+    document.getElementById('pocetna').classList.add("trenutno");
+
+})
+
+document.getElementById('autordugme').addEventListener("click", ()=>{
+    document.getElementById(stranica).classList.add("skriveno")
+    stranica = "autor";
+    document.getElementById('autor').classList.remove("skriveno");
+    
+    document.getElementById(dugme).classList.remove("trenutno");
+    dugme = "autordugme";
+    document.getElementById("autordugme").classList.add("trenutno");
+})
+
+document.getElementById('uputstvodugme').addEventListener("click", ()=>{
+    document.getElementById(stranica).classList.add("skriveno")
+    stranica = "uputstvo";
+    document.getElementById('uputstvo').classList.remove("skriveno");
+
+    document.getElementById(dugme).classList.remove("trenutno");
+    dugme = "uputstvodugme";
+    document.getElementById('uputstvodugme').classList.add("trenutno");
+})
+
+
+		function otvori1(){
+			 
+			prozor = window.open('','','width=400, height=300, '); 
+			
+			prozor.document.write('<div id="prozor"><h2>Жичани инструменти</h2></div>');  
+			prozor.document.write("Инструменти код којих се звук производи помоћу жица, било трзањем, превлачењем гудала преко њих или ударањем батићима по њима.");  
+			 
+			prozor.focus(); 
+		}
+		
+		function otvori2(){
+			 
+			prozor = window.open('','','width=400, height=300,'); 
+		
+			prozor.document.write("<h2>Жичани инструменти</h2>");  
+			prozor.document.write("Инструменти код којих се звук производи помоћу жица, било трзањем, превлачењем гудала преко њих или ударањем батићима по њима.");  
+			 
+			 
+			prozor.focus(); 
+		}
+		
+		function otvori3(){
+			 
+			prozor = window.open('','','width=400, height=300,'); 
+		
+			prozor.document.write("<h2>Жичани инструменти</h2>");  
+			prozor.document.write("Инструменти код којих се звук производи помоћу жица, било трзањем, превлачењем гудала преко њих или ударањем батићима по њима.");  
+			 
+			prozor.focus(); 
+		}
+		
+		function otvori4(){
+			 
+			prozor = window.open('','','width=400, height=300,'); 
+		
+			prozor.document.write("<h2>Удараљке</h2>");  
+			prozor.document.write("Инструменти који су по грађи најпримитивнији род музичких инструмената. Од прадавних времена па до данас оне су се јављале у различитим облицима и врстама у народној и уметничкој музици. Звук се добија ударом по звучном извору.");   
+			 
+			prozor.focus(); 
+		}
+		
+		function otvori5(){
+			 
+			prozor = window.open('','','width=400, height=300,'); 
+		
+			prozor.document.write("<h2>Аерофони инструменти</h2>");  
+			prozor.document.write(" Инструменти код којих се звук добија струјањем ваздушног стуба најчешће кроз цев инструмента, и то дувањем ваздуха.");  
+			 
+			prozor.focus(); 
+		}
+		
+		function otvori6(){
+			 
+			prozor = window.open('','','width=400, height=300,'); 
+		
+			prozor.document.write("<h2>Дувачки инструменти</h2>");  
+			prozor.document.write("Инструменти на којима се тон производи дувањем, обично из уста и плућа свирача. Дувачки инструменти су једна велика и разноврсна породица. Разликују се по облику, материјалу, начину дувања и улози. Они спадају у аерофоне инструменте.");  
+			 
+			 
+			prozor.focus(); 
+		}
+    =============================================================================================================================================================================================================
+    STYLE
+    =============================================================================================================================================================================================================
+    :root{
+    --clr-zelena: rgb(195,254,169);
+    --clr-tamnoz: rgb(71,127,45);
+}
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(254,250,152);
+    
+	
+    
+    
+	display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 20%;
+
+}
+
+header h1{
+    color: var(--clr-tamnoz);
+    font-size: 2.0em;
+}
+
+h4{
+	color: var(--clr-tamnoz);
+}
+
+.navbar{
+    width: 50%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+	cursor: pointer;
+    background-color: var(--clr-tamnoz)
+}
+
+.polje{
+    height: 100%;
+    width: 100%;
+    background-color: var(--clr-zelena);
+    color: var(--clr-tamnoz);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trenutno{
+    background-color: var(--clr-tamnoz);
+    color: var(--clr-zelena);
+
+    transition: all .1s ease-in-out;
+
+}
+
+.polje p{
+    margin: 0;
+    font-size: 1.5em;
+}
+
+
+footer{
+    width: 100%;
+    height: 6%;
+    background-color: var(--clr-tamnoz);
+    color: var(--clr-zelena);
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.sadrzaj{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.srbija{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+	transition: all .5s ease-in-out;
+    opacity: 1;
+  
+    
+}
+
+.autor{
+    position: absolute;
+    top: 10;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	
+    transition: all .5s ease-in-out;
+    opacity: 1;
+}
+
+.uputstvo{
+    position: absolute;
+    top: 10;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all .5s ease-in-out;
+    opacity: 1;
+}
+
+.sadrzajpolje{
+    height: 90%;
+    width: 60%;
+    border-radius: 5rem;
+    background-color: rgb(71,127,45);
+
+    
+    padding-left: 10rem;
+    padding-right: 10rem;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.sadrzajpolje p{
+    font-size: 2em;
+    
+}
+
+.slika{
+
+    
+    height: 90%;
+	position:flex;
+	
+}
+
+.omeni{
+    width: 40%;
+    height: 80%;
+}
+
+.slika img{
+    width: 100%;
+    height: 100%;
+}
+
+.skriveno{
+    opacity: 0;
+    z-index: -1;
+}
+
+
+table {
+	
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  height:70%;
+  width: 30%;
+  text-align: center;
+}
+
+td {
+  border: 1px solid rgb(71,127,45);
+  padding: 8px;
+}
+
+th {
+  background-color: rgb(71,127,45);
+  border: 1px solid rgb(254,250,152);
+  color:rgb(71,127,45);
+  padding: 10px;
+}
+
+tr{
+  background-color: rgb(195,254,169);
+}
+
+
+#prozor{
+	background-color: rgb(254,250,152);
+}
+
+
+ .naslov {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 12px;
+    margin-top: 10rem;
+    color: #228B22;
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+    font-size: 65px;
+    margin-left: -30rem;
+}
