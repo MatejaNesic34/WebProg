@@ -1,0 +1,242 @@
+POCETNA
+===================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="vebprimenjene.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style>
+        #uspeh {
+            background-color: rgb(82, 132, 179);
+            font-size:28pt;
+            height:50px;
+           
+            color:white;
+            
+        }
+   .meni{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(48, 68, 184);
+}
+   .dugme:hover{
+    background-color: rgb(26, 93, 134);
+color: black;
+}
+.dugme{
+    height: 50px;
+    width: 100px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid white;
+    color: white;
+    display: inline-block;
+}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="uspeh">Uspeh ucenika</div>
+        <div class="meni">
+        <a ><div class="dugme"><a href="WebForm1.aspx">Pocetna</a></div></a>
+        <a><div class="dugme"><a href="Grafik.aspx">Grafika</div> </a>
+        <a ><div class="dugme"><a href="Autor.aspx">O autoru</a></div> </a>
+      </div>
+        <div style="height: 571px">
+            <br />
+            <br />
+            <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Razred" DataSourceID="SqlDataSource1">
+                <Columns>
+                    <asp:BoundField DataField="Razred" HeaderText="Razred" ReadOnly="True" SortExpression="Razred" />
+                    <asp:BoundField DataField="Odlican" HeaderText="Odlican" SortExpression="Odlican" />
+                    <asp:BoundField DataField="Vrlodobar" HeaderText="Vrlodobar" SortExpression="Vrlodobar" />
+                    <asp:BoundField DataField="Dobar" HeaderText="Dobar" SortExpression="Dobar" />
+                    <asp:BoundField DataField="Dovoljan" HeaderText="Dovoljan" SortExpression="Dovoljan" />
+                    <asp:BoundField DataField="Nedovoljan" HeaderText="Nedovoljan" SortExpression="Nedovoljan" />
+                    <asp:BoundField DataField="ProsOcena" HeaderText="ProsOcena" SortExpression="ProsOcena" />
+                </Columns>
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Table] ORDER BY [ProsOcena]"></asp:SqlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+=========================================================================================================================================================================================================================
+GRAFIK
+=========================================================================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Grafik.aspx.cs" Inherits="vebprimenjene.Grafik" %>
+
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+        <style>
+        #uspeh {
+            background-color: rgb(82, 132, 179);
+            font-size:28pt;
+            height:50px;
+           
+            color:white;
+            
+        }
+   .meni{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(48, 68, 184);
+}
+   .dugme:hover{
+    background-color: rgb(26, 93, 134);
+color: black;
+}
+.dugme{
+    height: 50px;
+    width: 100px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid white;
+    color: white;
+    display: inline-block;
+}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+      <div id="uspeh">Uspeh ucenika</div>
+        <div class="meni">
+        <a ><div class="dugme"><a href="WebForm1.aspx">Pocetna</a></div></a>
+        <a><div class="dugme"><a href="Grafik.aspx">Grafika</div> </a>
+        <a ><div class="dugme"><a href="Autor.aspx">O autoru</a></div> </a>
+      </div>
+        <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1">
+            <series>
+                <asp:Series Name="Series1" XValueMember="Razred" YValueMembers="ProsOcena">
+                </asp:Series>
+            </series>
+            <chartareas>
+                <asp:ChartArea Name="ChartArea1">
+                </asp:ChartArea>
+            </chartareas>
+        </asp:Chart>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Razred], [ProsOcena] FROM [Table]"></asp:SqlDataSource>
+    </form>
+</body>
+</html>
+===========================================================================================================================================================================================================
+AUTOR
+===========================================================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Autor.aspx.cs" Inherits="vebprimenjene.Autor" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+        <style>
+        #uspeh {
+            background-color: rgb(82, 132, 179);
+            font-size:28pt;
+            height:50px;
+           
+            color:white;
+            
+        }
+   .meni{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(48, 68, 184);
+}
+   .dugme:hover{
+    background-color: rgb(26, 93, 134);
+color: black;
+}
+.dugme{
+    height: 50px;
+    width: 100px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid white;
+    color: white;
+    display: inline-block;
+}
+.desc{
+    font-size: 30px;
+    font-weight: 600;
+    background: #1876e9;
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 10px;
+}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <div id="uspeh">Uspeh ucenika</div>
+        <div class="meni">
+        <a ><div class="dugme"><a href="WebForm1.aspx">Pocetna</a></div></a>
+        <a><div class="dugme"><a href="Grafik.aspx">Grafika</div> </a>
+        <a ><div class="dugme"><a href="Autor.aspx">O autoru</a></div> </a>
+      </div>
+         <p class="desc">
+            Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu Uspeh Ucenika.
+        </p>
+         </form>
+</body>
+</html>
+======================================================================================================================================================================================================
+WEB CONFIG
+======================================================================================================================================================================================================
+<?xml version="1.0"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <appSettings>
+    <add key="ChartImageHandler" value="storage=file;timeout=20;dir=c:\TempImageFiles\;" />
+  </appSettings>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <remove name="ChartImageHandler" />
+      <add name="ChartImageHandler" preCondition="integratedMode" verb="GET,HEAD,POST"
+        path="ChartImg.axd" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    </handlers>
+  </system.webServer>
+  <connectionStrings>
+    <add name="ConnectionString" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <system.web>
+    <httpHandlers>
+      <add path="ChartImg.axd" verb="GET,HEAD,POST" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+        validate="false" />
+    </httpHandlers>
+    <pages>
+      <controls>
+        <add tagPrefix="asp" namespace="System.Web.UI.DataVisualization.Charting"
+          assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      </controls>
+    </pages>
+    <compilation debug="true" targetFramework="4.7.2">
+      <assemblies>
+        <add assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+      </assemblies>
+    </compilation>
+    <httpRuntime targetFramework="4.7.2"/>
+  </system.web>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701"/>
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/>
+    </compilers>
+  </system.codedom>
+</configuration>
