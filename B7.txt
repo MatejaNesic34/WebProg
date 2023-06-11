@@ -1,0 +1,206 @@
+POCETNA
+=============================================================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication8.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <p><b>Mozete se logovati sledecim nalozima:</b></p>
+    <table style="width: 30%;">
+        <tr>
+            <td>Korisnicko ime: Test1<br> Lozinka: test1123       </td>
+            <td>Korisnicko ime: Test2<br> Lozinka: test2123       </td>
+        </tr>
+    </table>
+    <hr />
+    <p style="">Unesite parametre za logovanje. <b style="color: blue">Registrujte se</b> ako nemate nalog.</p>
+    <asp:Panel ID="Panel1" runat="server" GroupingText="Forma za logovanje" Width="30%">
+        Korisnicko ime: <br />
+        <asp:TextBox ID="TextBox1" runat="server" Width="100%"></asp:TextBox>
+        <br />
+        Lozinka: <br />
+        <asp:TextBox ID="TextBox2" runat="server" Width="100%"></asp:TextBox>
+    </asp:Panel>
+    <br />
+    <asp:Button ID="Button1" runat="server" Text="Prijava" style="margin-left: 27%" OnClick="Button1_Click"/>
+    <br />
+    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+    <br />
+    <br />
+    </asp:Content>
+==============================================================================================================================================================================================================
+PREGLED
+==============================================================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="WebApplication8.WebForm2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:GridView ID="GridView1" runat="server">
+    </asp:GridView>
+</asp:Content>
+==============================================================================================================================================================================================================
+AUTOR
+==============================================================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Autor.aspx.cs" Inherits="WebApplication8.Autor" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+.desc{
+    font-size: 30px;
+    font-weight: 600;
+    background: #1876e9;
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 10px;
+}
+    </style>
+    <p class="desc">
+            Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu FotoGalerija.
+        </p>
+</asp:Content>
+================================================================================================================================================================================================================
+UPUTSTVO
+================================================================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Uputstvo.aspx.cs" Inherits="WebApplication8.Uputstvo" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+.desc{
+    font-size: 30px;
+    font-weight: 600;
+    background: #1876e9;
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 10px;
+}
+    </style>
+    <p class="desc">
+            Na pocetnoj strani korisnik ima mogucnost da se uloguje sa datim podacima, dok se na drugoj strani vidi pregled knjiga iz biblioteke, treca stranica sadrzi informacije o autoru, a na cetvrtoj strani nalazi se uputstvo.
+        </p>
+</asp:Content>
+===============================================================================================================================================================================================================
+XML KORISNICI
+===============================================================================================================================================================================================================
+<?xml version="1.0" encoding="utf-8" ?>
+<korisnici>
+  <korisnik>
+    <ime>Test1</ime>
+    <lozinka>test1123</lozinka>
+  </korisnik>
+  <korisnik>
+    <ime>Test2</ime>
+    <lozinka>test2123</lozinka>
+  </korisnik>
+</korisnici>
+=================================================================================================================================================================================================================
+XML KNJIGE
+=================================================================================================================================================================================================================
+<?xml version="1.0" encoding="utf-8" ?>
+<biblioteka>
+  <knjiga ISBN="10-000000-001">
+    <naslov>Baze podataka</naslov>
+    <stanje>12</stanje>
+    <citano>21</citano>
+  </knjiga>
+  <knjiga ISBN="10-000000-002">
+    <naslov>Programiranje C#</naslov>
+    <stanje>24</stanje>
+    <citano>19</citano>
+  </knjiga>
+  <knjiga ISBN="11-000000-003">
+    <naslov>Web dizajn 2</naslov>
+    <stanje>5</stanje>
+    <citano>11</citano>
+  </knjiga>
+  <knjiga ISBN="11-000000-004">
+    <naslov>Web dizajn 1</naslov>
+    <stanje>5</stanje>
+    <citano>31</citano>
+  </knjiga>
+  <knjiga ISBN="11-000000-005">
+    <naslov>Web programiranje 2</naslov>
+    <stanje>5</stanje>
+    <citano>51</citano>
+  </knjiga>
+  <knjiga ISBN="11-000000-006">
+    <naslov>Web programiranje 1</naslov>
+    <stanje>5</stanje>
+    <citano>31</citano>
+  </knjiga>
+</biblioteka>
+====================================================================================================================================================================================================================
+MASTERPAGE
+====================================================================================================================================================================================================================
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication8.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="background-color: darkblue; width: 100%; height: 30px; padding-bottom: 20px">
+        <h1 style="color: white; padding-left: 50px; line-height: 50px">Biblioteka</h1>
+    </div>
+    <div style="background-color: darkslateblue; height: 50px; line-height: 50px; vertical-align: middle; padding-left: 30px;">
+            <asp:Button ID="Button1" runat="server" Text="Pocetna" style="background-color:inherit; border-color: white; color: white; height: 30px" OnClick="Button1_Click"/>
+            <asp:Button ID="Button2" runat="server" Text="Pregled" style="background-color:inherit; border-color: white; color: white; height: 30px" OnClick="Button2_Click"/>
+            <asp:Button ID="Button3" runat="server" Text="O autoru" style="background-color:inherit; border-color: white; color: white; height: 30px" OnClick="Button3_Click"/>
+            <asp:Button ID="Button4" runat="server" Text="Uputstvo" style="background-color:inherit; border-color: white; color: white; height: 30px" OnClick="Button4_Click"/>
+    </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
+=======================================================================================================================================================================================================================
+MASTERPAGE C#
+=======================================================================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication8
+{
+    public partial class Site1 : System.Web.UI.MasterPage
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm1.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm2.aspx");
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Autor.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Uputstvo.aspx");
+        }
+    }
+}
