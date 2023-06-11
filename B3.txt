@@ -289,7 +289,7 @@ AUTOR
     <div class="autor" id="autor">
         <div class="sadrzajpolje">
             <h1>О аутору</h1>
-            <p>Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad za maturski ispit iz web programiranja na temu Srbija i njeni susedi.
+            <p>Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu Srbija i njeni susedi.
             </p> 
             
         </div>
