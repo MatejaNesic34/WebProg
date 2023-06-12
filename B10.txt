@@ -1,0 +1,361 @@
+CITANJE
+=========================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Citanje.aspx.cs" Inherits="PrimenjeneWeb2.Citanje" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Citanje</title>
+    <style type="text/css">        
+        *{
+            margin: 0 auto;
+        }
+        .header{
+            background-color: #4b6c9e;
+            color: #fff;
+            font-size: 25px;
+            height: 80px;
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+        .meni{
+            background-color: #3a4f63;
+            height: 40px;
+            color: #fff;
+            display: inline-flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding-left: 30px;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .link{
+            text-decoration: none;
+            color: #fff;
+        }
+        .auto-style1 {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <h3>ELEKTRONSKI REČNIK</h3>
+        </div>
+        <div class="meni">
+
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Citanje.aspx" CssClass="link">Citanje</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Upis.aspx" CssClass="link">Upis</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Uputstvo.aspx" CssClass="link">Uputstvo</asp:HyperLink>
+
+        </div>
+        <div id="citanje">
+            <p class="auto-style1">
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Smer prevodjenja"></asp:Label>
+        
+        &nbsp;&nbsp;&nbsp;
+        
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" Height="21px" Width="236px">
+            <asp:ListItem>Engleski-&gt;Srpski</asp:ListItem>
+            <asp:ListItem>Srpski-&gt;Engleski</asp:ListItem>
+        </asp:DropDownList>
+        <br />
+        <br />
+        <asp:Label ID="Label1" runat="server" Text="Srpska Rec"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxSrpska" runat="server" CssClass="auto-style2" Width="168px"></asp:TextBox>
+                <br />
+                <br />
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="Engleska Rec"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxEngleska" runat="server" Width="170px"></asp:TextBox>
+                <br />
+                <br />
+        <br />
+        <asp:Label ID="Label3" runat="server" Text="Opis"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxOpis" runat="server" Width="171px"></asp:TextBox>
+                <br />
+        <br />
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="ButtonPrevedi" runat="server" OnClick="ButtonPrevedi_Click" Text="Prevedi" Width="86px" />
+            </p>
+        </div>         
+    </form>   
+</body>
+</html>
+==================================================================================================================================================================================
+POCETNA C#
+==================================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+
+namespace PrimenjeneWeb2
+{
+    public partial class Citanje : System.Web.UI.Page
+    {
+        SqlConnection con;
+        SqlCommand cmd = new SqlCommand();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void ButtonPrevedi_Click(object sender, EventArgs e)
+        {
+            if(DropDownList1.Text == "Engleski->Srpski")
+            {
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT Srpski, Engleski, Opis FROM Reci WHERE Engleski = @param";
+                cmd.Parameters.AddWithValue("param", TextBoxEngleska.Text);
+                con.Open();
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                       sdr.Read();
+                       TextBoxEngleska.Text = sdr["Engleski"].ToString();
+                       TextBoxSrpska.Text = sdr["Srpski"].ToString();
+                        TextBoxOpis.Text = sdr["Opis"].ToString();
+                }
+                con.Close();               
+            }
+            else
+            {
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT Srpski, Engleski, Opis FROM Reci WHERE Srpski = @param";
+                cmd.Parameters.AddWithValue("param", TextBoxSrpska.Text);
+                con.Open();
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                       sdr.Read();
+                       TextBoxEngleska.Text = sdr["Engleski"].ToString();
+                       TextBoxSrpska.Text = sdr["Srpski"].ToString();
+                        TextBoxOpis.Text = sdr["Opis"].ToString();
+                }
+                con.Close();
+            }
+        }
+    }
+}
+========================================================================================================================================================================
+UPIS
+========================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Upis.aspx.cs" Inherits="PrimenjeneWeb2.Upis" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Upis</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        .header{
+            background-color: #4b6c9e;
+            color: #fff;
+            font-size: 25px;
+            height: 80px;
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+        .meni{
+            background-color: #3a4f63;
+            height: 40px;
+            color: #fff;
+            display: inline-flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding-left: 30px;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .link{
+            text-decoration: none;
+            color: #fff;
+        }
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+       <div class="header">
+            <h3>ELEKTRONSKI REČNIK</h3>
+        </div>
+        <div class="meni">
+            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="link" NavigateUrl="~/Citanje.aspx">Citanje</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" CssClass="link" NavigateUrl="~/Upis.aspx">Upis</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" CssClass="link" NavigateUrl="~/Uputstvo.aspx">Uputstvo</asp:HyperLink>
+            <br />
+            <br />
+        </div>
+        <p>
+        <asp:Label ID="Label5" runat="server" Text="Srpska Rec"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxSrpskaUnos" runat="server" CssClass="auto-style2" Width="168px"></asp:TextBox>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        <asp:Label ID="Label6" runat="server" Text="Engleska Rec"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxEngleskaUnos" runat="server" Width="170px"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Label ID="Label7" runat="server" Text="Opis"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBoxOpisUnos" runat="server" Width="171px"></asp:TextBox>
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="ButtonSnimi" runat="server" OnClick="ButtonSnimi_Click" Text="Snimi" />
+
+    </p>
+    </form>
+</body>
+</html>
+================================================================================================================================================================
+UPIS C#
+================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+namespace PrimenjeneWeb2
+{
+    public partial class Upis : System.Web.UI.Page
+    {
+        SqlConnection con;
+        SqlCommand cmd = new SqlCommand();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonSnimi_Click(object sender, EventArgs e)
+        {
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+            cmd.Connection = con;
+            cmd.CommandText = "INSERT into [Reci] (Srpski, Engleski, Opis) VALUES (@par, @param, @parametar)";
+            cmd.Parameters.AddWithValue("par", TextBoxSrpskaUnos.Text);
+            cmd.Parameters.AddWithValue("param", TextBoxEngleskaUnos.Text);
+            cmd.Parameters.AddWithValue("parametar", TextBoxOpisUnos.Text);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+    }
+}
+=======================================================================================================================================================================
+UPUTSTVO
+=======================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Uputstvo.aspx.cs" Inherits="PrimenjeneWeb2.Uputstvo" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Uputstvo</title>
+    <style>
+        *{
+            margin: 0 auto;
+        }
+        .header{
+            background-color: #4b6c9e;
+            color: #fff;
+            font-size: 25px;
+            height: 80px;
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+        .meni{
+            background-color: #3a4f63;
+            height: 40px;
+            color: #fff;
+            display: inline-flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding-left: 30px;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .link{
+            text-decoration: none;
+            color: #fff;
+        }
+        .auto-style1 {
+            margin-left: 40px;
+        }
+        .uputstvo{
+            margin-top: 100px;
+            margin-left: 100px;
+            font-size: 20px;
+            color: #4b6c9e;
+            width: 400px;
+            margin-bottom: -30px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+       <div class="header">
+            <h3>ELEKTRONSKI REČNIK</h3>
+        </div>
+        <div class="meni">
+
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Citanje.aspx" CssClass="link">Citanje</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Upis.aspx" CssClass="link">Upis</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Uputstvo.aspx" CssClass="link">Uputstvo</asp:HyperLink>
+
+        </div>
+        <div>
+            <p class="uputstvo">Na pocetnoj strani birate smer 
+            prevodjenja reci gde mozete birati izmedju Engleski->Srpski
+            i Srpski-> Engleski. Unosite rec i klikom na dugme Prevedi dobijate 
+            prevedenu rec na zeljeni jezik.</p>
+            <p class="uputstvo">Na drugoj strani unosite rec koju zelite da dodate,
+            klikom na dugme Snimi vasa rec upisuje se u postojeci recnik.</p>
+        </div>
+    </form>
+</body>
+</html>
+===========================================================================================================================================================================
+WEB CONFIG
+===========================================================================================================================================================================
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+	<connectionStrings>
+		<add name="constr" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Mateja\Desktop\PrimenjeneWeb2\App_Data\Recnik.mdf;Integrated Security=True"/>
+	</connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.7.2" />
+    <httpRuntime targetFramework="4.7.2" />
+  </system.web>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+    </compilers>
+  </system.codedom>
+</configuration>
