@@ -1,0 +1,270 @@
+CITANJE
+=========================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication5.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <p>
+        <br />
+        Datum:
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+&nbsp;Valuta
+        <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem>EUR</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Button ID="Button3" runat="server" Text="Prikazi" OnClick="Button3_Click" />
+        <asp:Button ID="Button4" runat="server" Text="Dodaj" />
+    </p>
+    <p style="margin-left: 80px">
+        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Kurs na dan:"></asp:Label>
+    </p>
+    <p>
+    </p>
+
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <asp:Button ID="Button1" runat="server" Text="Unos kursa" style="margin-right: 50px" OnClick="Button1_Click"/>
+</asp:Content>
+==========================================================================================================================================================================
+CITANJE C#
+==========================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication5
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            ServiceReference1.WebService1SoapClient servis = new ServiceReference1.WebService1SoapClient();
+            double kurs = servis.ProcitajKursNaDan(DateTime.Parse(TextBox1.Text), DropDownList1.SelectedValue.ToString());
+            Label1.Text = "Kurs na dan: " + kurs;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm2.aspx");
+        }
+    }
+}
+================================================================================================================================================================================
+UPIS
+================================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="WebApplication5.WebForm2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <p>
+        <br />
+&nbsp;&nbsp;&nbsp; Datum:
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    </p>
+    <p>
+&nbsp;&nbsp;&nbsp;&nbsp; Valuta:
+        <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem>EUR</asp:ListItem>
+            <asp:ListItem>USD</asp:ListItem>
+        </asp:DropDownList>
+    </p>
+    <p>
+&nbsp;&nbsp;&nbsp;&nbsp; Iznos:
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+    </p>
+    <p style="margin-left: 40px">
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Snimi" />
+    </p>
+    <p style="margin-left: 40px">
+        <asp:Label ID="Label1" runat="server"></asp:Label>
+        <br />
+    </p>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Button ID="Button2" runat="server" Text="Kurs na dan" style="margin-right: 50px" OnClick="Button2_Click"/>
+</asp:Content>
+=====================================================================================================================================================================================
+UPIS C#
+=====================================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication5
+{
+    public partial class WebForm2 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ServiceReference1.WebService1SoapClient servis = new ServiceReference1.WebService1SoapClient();
+            if(servis.UpisiKursNaDan(DateTime.Parse(TextBox1.Text), DropDownList1.SelectedValue.ToString(), double.Parse(TextBox2.Text)))
+            {
+                Label1.Text = "Uspesan upis!";
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm1.aspx");
+        }
+    }
+}
+=======================================================================================================================================================================================
+SERVICE
+=======================================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Services;
+using System.Xml;
+using System.Xml.Linq;
+
+namespace WebApplication5
+{
+    /// <summary>
+    /// Summary description for WebService1
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    // [System.Web.Script.Services.ScriptService]
+    public class WebService1 : System.Web.Services.WebService
+    {
+
+        [WebMethod]
+        public double ProcitajKursNaDan(DateTime Datum, string valuta)
+        {
+            XElement element = XElement.Load(@"C:\Users\Mateja\Desktop\WebApplication5\WebApplication5\XMLFile1.xml");
+            IEnumerable<XElement> kursevi = element.Elements();
+            IEnumerable<double> kurs = from dan in kursevi
+                       where dan.Element("datum").Value == Datum.ToString()
+                       where dan.Element("valuta").Value == valuta
+                       select double.Parse(dan.Element("kurs").Value);
+            return kurs.First();
+        }
+
+        [WebMethod]
+        public bool UpisiKursNaDan(DateTime datum ,string valuta, double kurs)
+        {
+            if (File.Exists(Server.MapPath("XMLFile1.xml")) == false)
+            {
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.NewLineOnAttributes = true;
+                using (XmlWriter writer = XmlWriter.Create(Server.MapPath("XMLFile1.xml"), settings))
+                {
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("lista");
+                    writer.WriteStartElement("dan");
+                    writer.WriteElementString("datum", datum.ToString());
+                    writer.WriteElementString("valuta", valuta);
+                    writer.WriteElementString("kurs", kurs.ToString());
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    writer.WriteEndDocument();
+                }
+            }
+            else
+            {
+                XDocument doc = XDocument.Load(Server.MapPath("XMLFile1.xml"));
+                XElement root = doc.Element("lista");
+                IEnumerable<XElement> rows = root.Descendants("dan");
+                XElement prvi = rows.First();
+                prvi.AddAfterSelf(
+                    new XElement("dan",
+                    new XElement("datum", datum.ToString()),
+                    new XElement("valuta", valuta),
+                    new XElement("kurs", kurs.ToString())));
+                doc.Save(Server.MapPath("XMLFile1.xml"));
+            }
+            return true;
+        }
+
+    }
+}
+=====================================================================================================================================================================
+MASTERPAGE
+=====================================================================================================================================================================
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication5.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="width: 100%; height: 100px; background-color: darkblue; color: white;">
+            <p style="font-size: 50px; margin-top: 25px; margin-left: 50px">Kursna lista</p>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div style="width: 100%; height: 50px; background-color: darkblue; color: white;">
+            <div style="float:left; width: 60%;height: 50px"><p style="font-size: 20px; margin-top: 15px; margin-left: 50px">Elektrotehnicka skola "Nikola Tesla" Nis"</p> </div>
+            <div style="float:left; width: 40%;height: 50px"><p style="font-size: 20px; margin-top: 15px; margin-left: 50px; text-align:right"><asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder></p> </div>
+        </div>
+    </form>
+</body>
+</html>
+======================================================================================================================================================================================
+WEB CONFIG
+======================================================================================================================================================================================
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.7.2" />
+    <httpRuntime targetFramework="4.7.2" />
+  </system.web>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+    </compilers>
+  </system.codedom>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="WebService1Soap">
+          <security mode="Transport" />
+        </binding>
+        <binding name="WebService1Soap1" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://localhost:44360/WebService1.asmx"
+        binding="basicHttpBinding" bindingConfiguration="WebService1Soap"
+        contract="ServiceReference1.WebService1Soap" name="WebService1Soap" />
+    </client>
+  </system.serviceModel>
+</configuration>
