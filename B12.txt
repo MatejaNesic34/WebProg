@@ -1,0 +1,268 @@
+POCETNA
+=========================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication4.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Pocetna</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div style="background-color: darkblue; color:whitesmoke">
+                <h1>Rezervacija autobuskih karata</h1>
+                <div style="background-color: darkslateblue; padding-left: 20px; height: 40px; line-height: 40px; vertical-align:middle;">
+                    <asp:HyperLink ID="HyperLink3" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/WebForm1.aspx">Pocetna</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Autor.aspx">Autor</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Uputstvo.aspx">Uputstvo</asp:HyperLink>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br />
+            Prikaz sedista autobusa<br />
+            <br />
+            <table>
+                <tr>
+                    <td><asp:Button ID="Button4" runat="server" Text="1" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button5" runat="server" Text="2" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td rowspan="13">Prolaz</td>
+                    <td><asp:Button ID="Button7" runat="server" Text="3" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button8" runat="server" Text="4" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button6" runat="server" Text="5" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button9" runat="server" Text="6" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button10" runat="server" Text="7" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button11" runat="server" Text="8" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button12" runat="server" Text="9" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button13" runat="server" Text="10" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button14" runat="server" Text="11" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button15" runat="server" Text="12" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button16" runat="server" Text="13" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button17" runat="server" Text="14" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button18" runat="server" Text="15" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button19" runat="server" Text="16" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button20" runat="server" Text="17" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button21" runat="server" Text="18" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button22" runat="server" Text="19" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button23" runat="server" Text="20" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button24" runat="server" Text="21" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button25" runat="server" Text="22" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button26" runat="server" Text="23" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button27" runat="server" Text="24" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button28" runat="server" Text="25" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button29" runat="server" Text="26" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button30" runat="server" Text="27" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button31" runat="server" Text="28" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button32" runat="server" Text="29" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button33" runat="server" Text="30" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button34" runat="server" Text="31" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button35" runat="server" Text="32" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button36" runat="server" Text="33" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button37" runat="server" Text="34" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button38" runat="server" Text="35" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button39" runat="server" Text="36" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button40" runat="server" Text="37" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button41" runat="server" Text="38" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button42" runat="server" Text="39" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button43" runat="server" Text="40" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button44" runat="server" Text="41" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button45" runat="server" Text="42" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button46" runat="server" Text="43" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button47" runat="server" Text="44" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button48" runat="server" Text="45" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button49" runat="server" Text="46" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button50" runat="server" Text="47" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button51" runat="server" Text="48" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+                <tr>
+                    <td><asp:Button ID="Button52" runat="server" Text="49" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button53" runat="server" Text="50" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button54" runat="server" Text="51" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                    <td><asp:Button ID="Button55" runat="server" Text="52" style="width: 25px; height: 25px" OnClick="Button4_Click"/></td>
+                </tr>
+            </table>
+            <br />
+            Broj sedista<asp:TextBox ID="TextBox53" runat="server" Enabled="False" Width="126px"></asp:TextBox>
+            <br />
+            <br />
+            Ime i prezime<asp:TextBox ID="TextBox54" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            E-mail<asp:TextBox ID="TextBox55" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="Button56" runat="server" OnClick="Button56_Click" Text="Posalji" />
+        </div>
+    </form>
+</body>
+</html>
+===========================================================================================================================================================================================
+POCETNA C#
+===========================================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication4
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        SqlConnection konekcija = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Mateja\Desktop\WebApplication4\WebApplication4\App_Data\Database1.mdf;Integrated Security=True");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            SqlCommand komanda = new SqlCommand("SELECT * FROM Sedista", konekcija);
+            SqlDataAdapter da = new SqlDataAdapter(komanda);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            foreach(DataRow red in dt.Rows)
+            {
+                int broj = Convert.ToInt32(red["BrojSedista"].ToString()) + 3;
+                Control kontrola = Page.FindControl("Button" + broj);
+                if (kontrola is Button)
+                {
+                    Button dugme = (Button)kontrola;
+                    if (red["Rezervacija"].ToString() == "True")
+                    {
+                        dugme.BackColor = System.Drawing.Color.Red;
+                        dugme.Enabled = false;
+                    }
+                    else
+                    {
+                        dugme.BackColor = System.Drawing.Color.Green;
+                    }
+                }
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            this.TextBox53.Text = btn.Text;
+        }
+
+        protected void Button56_Click(object sender, EventArgs e)
+        {
+            if (TextBox54.Text != "" && TextBox55.Text != "")
+            {
+                konekcija.Open();
+                SqlCommand komanda = new SqlCommand("UPDATE Sedista SET Rezervacija = @Zauzeto WHERE BrojSedista = @Broj", konekcija);
+                komanda.Parameters.AddWithValue("@Zauzeto", "True");
+                komanda.Parameters.AddWithValue("@Broj", TextBox53.Text);
+                komanda.ExecuteNonQuery();
+                konekcija.Close();
+                Response.Redirect("WebForm1.aspx");
+            }
+        }
+    }
+}
+=====================================================================================================================================================================================
+AUTOR
+=====================================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Autor.aspx.cs" Inherits="WebApplication4.Autor" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Autor</title>
+    <style>
+        .desc{
+    font-size: 30px;
+    font-weight: 600;
+    background: #1876e9;
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 10px;
+}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div style="background-color: darkblue; color:whitesmoke">
+                <h1>Rezervacija autobuskih karata</h1>
+                <div style="background-color: darkslateblue; padding-left: 20px; height: 40px; line-height: 40px; vertical-align:middle;">
+                    <asp:HyperLink ID="HyperLink3" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/WebForm1.aspx">Pocetna</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Autor.aspx">Autor</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Uputstvo.aspx">Uputstvo</asp:HyperLink>
+                </div>
+            </div>
+        </div>
+         <p class="desc">
+            Moje ime je Mateja Nesic, ucenik sam Tehnicke skole u Pirotu, i ovo je moj prakticni rad na maturskom ispitu iz web programiranja na temu Rezervacija sedista.
+        </p>
+    </form>
+</body>
+</html>
+=========================================================================================================================================================================================
+UPUTSTVO
+=========================================================================================================================================================================================
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Uputstvo.aspx.cs" Inherits="WebApplication4.Uputstvo" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Uputstvo</title>
+    <style>
+        .desc{
+    font-size: 30px;
+    font-weight: 600;
+    background: #1876e9;
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 10px;
+}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div style="background-color: darkblue; color:whitesmoke">
+                <h1>Rezervacija autobuskih karata</h1>
+                <div style="background-color: darkslateblue; padding-left: 20px; height: 40px; line-height: 40px; vertical-align:middle;">
+                    <asp:HyperLink ID="HyperLink3" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/WebForm1.aspx">Pocetna</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Autor.aspx">Autor</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" style="background-color: darkblue; color: white; text-decoration: none; padding: 5px;" NavigateUrl="~/Uputstvo.aspx">Uputstvo</asp:HyperLink>
+                </div>
+            </div>
+        </div>
+         <p class="desc">
+            Na pocetnoj strani nalazi se graficki prikaz sedista u autobusu, korisnik ima mogucnost da izabere sediste koje zeli da rezervise, zatim unosi ime prezime i email, i na kraju klikom na dugme ispod njegova rezervacija se pamti i grafika sa sedistima se azurira. Druga strana sadrzi informacije o autoru, a na trecoj strani nalazi se kratko uputstvo za koriscenje.
+        </p>
+    </form>
+</body>
+</html>
