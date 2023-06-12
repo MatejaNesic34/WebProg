@@ -1,0 +1,191 @@
+POCETNA
+================================================================================================================================================================
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Б15.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <p>
+        &nbsp; Linija:
+        <asp:DropDownList ID="DropDownList1" runat="server"  AutoPostBack="true" AppendDataBoundItems="true"  OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        </asp:DropDownList>
+        &nbsp; Smer:
+        <asp:DropDownList ID="DropDownList2" runat="server">
+        </asp:DropDownList>
+        &nbsp;<asp:Button ID="Button1" runat="server" Text="Prikazi" OnClick="Button1_Click" />
+    </p>
+    <hr />
+    <div>
+        Polasci:
+        <asp:Table ID="Table1" runat="server">
+            <asp:TableRow runat="server" Width="30%">
+                <asp:TableCell runat="server">Red br</asp:TableCell>
+                <asp:TableCell runat="server">Polazak</asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <br />
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+===================================================================================================================================================================
+POCETNA C#
+===================================================================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Б15
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Table1.GridLines = GridLines.Both;
+                Response.Cache.SetNoStore();
+                Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
+                DropDownList1.Items.Clear();
+                string startFolder = @"C:\Users\Mateja\Desktop\Б15\Б15\";
+                System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(startFolder);
+                IEnumerable<System.IO.FileInfo> fileList = dir.GetFiles("*.*", System.IO.SearchOption.AllDirectories);
+                var queryMatchingFiles =
+                    from file in fileList
+                    where file.Extension == ".txt"
+                    let fileText = GetFileText(file.FullName)
+                    select file.Name;
+                foreach (string filename in queryMatchingFiles)
+                {
+                    ListItem lst = new ListItem(filename, filename);
+                    DropDownList1.Items.Insert(DropDownList1.Items.Count, lst);
+                }
+                DropDownList1.Items.RemoveAt(DropDownList1.Items.Count - 1);
+                string ime = @"C:\Users\Mateja\Desktop\Б15\Б15\" + DropDownList1.SelectedItem.Text;
+                using (StreamReader file = new StreamReader(ime))
+                {
+                    string ln;
+                    while ((ln = file.ReadLine()) != null)
+                    {
+                        if (!char.IsDigit(ln[0]))
+                        {
+                            ListItem lst = new ListItem(ln, ln);
+                            DropDownList2.Items.Insert(DropDownList2.Items.Count, lst);
+                        }
+                    }
+                    file.Close();
+                }
+            }
+        }
+        static string GetFileText(string name)
+        {
+            string fileContents = String.Empty;
+            if (System.IO.File.Exists(name))
+            {
+                fileContents = System.IO.File.ReadAllText(name);
+            }
+            return fileContents;
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList2.Items.Clear();
+            string ime = @"C:\Users\Mateja\Desktop\Б15\Б15\" + DropDownList1.SelectedItem.Text;
+            using (StreamReader file = new StreamReader(ime))
+            {
+                string ln;
+                while ((ln = file.ReadLine()) != null)
+                {
+                    if (!char.IsDigit(ln[0]))
+                    {
+                        ListItem lst = new ListItem(ln, ln);
+                        DropDownList2.Items.Insert(DropDownList2.Items.Count, lst);
+                    }
+                }
+                file.Close();
+            }
+            DropDownList2.SelectedIndex = 0;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            TableRow rw1 = new TableRow();
+            TableCell cel1 = new TableCell();
+            TableCell cel2 = new TableCell();
+            cel1.Text = "Red br";
+            rw1.Cells.Add(cel1);
+            cel2.Text = "Polazak";
+            rw1.Cells.Add(cel2);
+            Table1.Rows.Clear();
+            Table1.Rows.Add(rw1);
+            string ime = @"C:\Users\Mateja\Desktop\Б15\Б15\" + DropDownList1.SelectedItem.Text;
+            using (StreamReader file = new StreamReader(ime))
+            {
+                string ln;
+                bool p = false;
+                int brojac = 1;
+                TableRow rw2 = new TableRow();
+                while ((ln = file.ReadLine()) != null)
+                {
+                    if (!char.IsDigit(ln[0]))
+                    {
+                        p = false;
+                    }
+                    if (ln == DropDownList2.SelectedItem.Text)
+                    {
+                        p = true;
+                    }
+                    TableRow rw = new TableRow();
+                    if (char.IsDigit(ln[0]) && p)
+                    {
+                        TableCell cel3 = new TableCell();
+                        cel3.Text = brojac.ToString();
+                        rw.Cells.Add(cel3);
+                        TableCell cel4 = new TableCell();
+                        cel4.Text = ln;
+                        rw.Cells.Add(cel4);
+                        brojac++;
+                    }
+                    Table1.Rows.Add(rw);
+                    Table1.GridLines = GridLines.Both;
+                    Table1.CellPadding = 4;
+                    Table1.CellSpacing = 0;
+                }
+                file.Close();
+            }
+        }
+    }
+}
+===========================================================================================================================================================================================
+MASTERPAGE
+===========================================================================================================================================================================================
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Б15.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" autocomplete="off">
+        <div style="width: 100%; height: 100px; background-color: darkblue; color: white;">
+            <p style="font-size: 50px; margin-top: 25px; margin-left: 50px">Red voznje</p>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div style="width: 100%; height: 50px; background-color: darkblue; color: white;">
+            <div style="float:left; width: 60%;height: 50px"><p style="font-size: 20px; margin-top: 15px; margin-left: 50px">Elektrotehnicka skola "Nikola Tesla" Nis"</p> </div>
+            <div style="float:left; width: 40%;height: 50px"><p style="font-size: 20px; margin-top: 15px; margin-left: 50px; text-align:right"><asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder></p> </div>
+        </div>
+    </form>
+</body>
+</html>
